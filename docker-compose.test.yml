@@ -1,0 +1,13 @@
+version: '3.9'
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+  sut:
+    image: alpine:3.17.0
+    depends_on:
+      - app
+    command: sh /tmp/run_tests.sh
+    volumes:
+      - "./run_tests.sh:/tmp/run_tests.sh:ro"
